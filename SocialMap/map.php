@@ -18,7 +18,7 @@
 		  height: 100%; 
 		  margin: 0; 
 		  padding: 0;
-		  background-color: #CCC;
+		  background-color: #eeedef;
 	  }
       
 	  /*Adapt the following styling depending on where you want to put your map. If you want a 'full screen' map, then set the width and height to 100 percent and remove the margins.*/
@@ -27,12 +27,6 @@
 		  width: 75%; 
 		  margin-left: auto;
           margin-right: auto;
-		  border-right-width: 2px;
-		  border-right-color: #ffffff;
-		  border-right-style: solid;
-		  border-left-width: 2px;
-		  border-left-color: #ffffff;
-		  border-left-style: solid;
 	  }
 	  
 	  .pop_up_box_text {

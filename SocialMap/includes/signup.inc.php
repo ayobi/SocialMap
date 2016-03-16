@@ -8,7 +8,7 @@
 	$password = $_POST['password'];
 	
 	if (empty($firstName) || empty($lastName) || empty($username) || empty($password)){
-		header("Location: ../signup.php?error=empty");
+		header("Location: ../index.php?error=empty");
 		exit();
 	}
 	else {
@@ -16,11 +16,11 @@
 		$result = $conn->query($sql);
 		$usernameCheck = mysqli_num_rows($result);
 		if ($usernameCheck > 0){
-			header("Location: ../signup.php?error=username");
+			header("Location: ../index.php?error=username");
 			exit();
-		}
-		else{
-			$sql = "INSERT INTO users (firstName, lastName, username, password) 
+		} else{
+			//$encrypted_password = password_hash($password, PASSWORD_DEFAULT);
+			$sql = "INSERT INTO users (firstName, lastName, username, password)
 			VALUES('$firstName', '$lastName', '$username', '$password')";
 			$result = $conn->query($sql);
 		

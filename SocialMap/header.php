@@ -12,32 +12,43 @@
 	<body>
 		<header>
 			<h1>
-				<img src="SM.png" height="100" width = "100"/>
-				<h2>SocialMap</h2>
+				<img src="Socialmap.png" height="150" width = "600"/>
 			</h1>
-			<nav>
-				<ul>
-					<li><a href="index.php">HOME</a></li>
-					<?php
-						if(isset($_SESSION['id'])){		
-							echo "<form action='includes/logout.inc.php'>
-								<button>LOG OUT</button>
-							</form>";
-							echo "<li><a href='profile.php'>PROFILE<a></li>";
+			<nav>					
+				<?php
+					if(isset($_SESSION['id'])){	
+						echo "<ul class='menu'><li><a href='index.php'>Home</a></li>
+							  <li><a href='profile.php'>Profile<a></li>
+							  <form action='includes/logout.inc.php' class='logoutForm'>
+							  <button>Log Out</button></form></ul>";
+					}
+					else{
+						$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+						if (strpos($url, 'error=empty') != false){
+							echo "Fill out all fields!";
 						}
-						else{
-							echo "<form action='includes/login.inc.php' method='POST'>
-							<input type='text' name='username' placeholder='Username'>
-							<input type='text' name='password' placeholder='Password'>
-						<button type='submit'>LOGIN</button>
-						</form>";
-							echo "<li><a href='signup.php'>SIGNUP<a></li>";
+						else if (strpos($url, 'error=username') != false){
+							echo "<h3>Username already exists!</h3>";
 						}
-					?>
-					
-				</ul>
+						echo "<form action='includes/login.inc.php' method='POST' class='loginForm'>
+						<input type='text' name='username' placeholder='Username'>
+						<input type='text' name='password' placeholder='Password'>
+						<button type='submit'>Log In</button></form>";
+						echo "<br><p class = 'headline'>Welcome to SocialMap! Please Login or create an account.</p></br>";
+						
+						echo "<br><form action='includes/signup.inc.php' method='POST' class='signupForm'>
+								<input type='text' name='firstName' placeholder='First Name'><br>
+								<input type='text' name='lastName' placeholder='Last Name'><br>
+								<input type='text' name='username' placeholder='Username'><br>
+								<input type='text' name='password' placeholder='Password'><br>
+								<button type='submit'>SIGN UP</button></form></br>";
+							
+						
+					}
+				?>
 			</nav>
 		</header>
+		<body background="Free-background-1.jpg"/>
 	</body>
 		
 </html>
