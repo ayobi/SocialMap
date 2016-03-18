@@ -13,12 +13,13 @@
 		<header>
 			<h1>
 				<img src="Socialmap.png" height="150" width = "600"/>
+				
 			</h1>
 			<nav>					
 				<?php
 					if(isset($_SESSION['id'])){	
-						echo "<ul class='menu'><li><a href='index.php'>Home</a></li>
-							  <li><a href='profile.php'>Profile<a></li>
+						echo "<ul class='menu'><a href='index.php'>Home</a><br>
+							  <a href='profile.php'>Profile<a><br>
 							  <form action='includes/logout.inc.php' class='logoutForm'>
 							  <button>Log Out</button></form></ul>";
 					}

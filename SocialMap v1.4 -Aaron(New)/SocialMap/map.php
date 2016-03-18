@@ -37,23 +37,21 @@
 		  display: inline; 
 	  }
 
-</style>
-<br><br>
-<input type='text' id='userInput' value='Enter URL Here' /><br>
-<a href="" id=lnk></a> <br>
+</style><br><center>
+<input type='text' id='userInput' value='Enter URL Here' />
+<a href="" id=lnk></a> 
 
-<input type='text' id='userInput2' value='Enter Longitude Here' /><br>
-<a href="" id=lnk2></a> <br>
+<input type='text' id='userInput2' value='Enter Longitude Here' />
+<a href="" id=lnk2></a>
 
-<input type='text' id='userInput3' value='Enter Latitude Here' /><br>
-<a href="" id=lnk3></a> <br>
+<input type='text' id='userInput3' value='Enter Latitude Here' />
+<a href="" id=lnk3></a>
 
 <input type='button' onclick='javascript:loadMapMarkers ()' value='Insert Image'/><br>
+<br>
+</center>
 
 
-<script>
-
-</script>
 
 <!--Connect to the google maps api-->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyqLywtRdPq21DKjVtkGWXcvaN-Q8kKaU&sensor=true"></script>
@@ -162,9 +160,11 @@ markerPicture = new google.maps.Marker({
 </script>
 
 </head>
+<body> 
 
-<body>  
      <!--Create the div to hold the map.-->
-    <div id="social-Map"></div>   
+    <div id="social-Map"></div>
+
 </body>
+
 </html>
