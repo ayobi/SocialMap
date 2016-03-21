@@ -1,0 +1,130 @@
+* {
+	margin: 0px; 
+	padding: 0px;
+	text-decoration: none;
+}
+
+header{
+	width: 100%;
+	height: 150px;
+	background-color: #39b54a;
+}
+
+body{
+	background-color: #eeedef
+}
+
+h1{
+	text-align: center;
+}
+
+h3{
+	float: center;
+	text-decoration: none;
+}
+
+.headline {
+	padding-left: 37%;
+	padding-top: 0px;
+	font-size: 20px;
+}
+
+.loginForm {
+	float: right;
+}
+
+.loginForm input {
+	float: left;
+	height: 25px;
+	margin-right: 6px;
+	font-size: 16px;
+	padding: 1px 1px 1px 5px;
+}
+
+.loginForm button {
+	width: 75px;
+	height: 30px;
+	margin-right: 20px;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 3px 3px 3px 3px;
+}
+
+.signupForm {
+	padding-left: 40%;
+	min-width: 10%;
+	padding-top: 5%;
+}
+
+.signupForm input {
+	font-size: 20px;
+	width: 300px;
+	margin-bottom: 10px;
+	padding-left: 5px;
+}
+
+.signupForm Button{
+	width: 309px;
+}
+
+.logoutForm{
+	float: right;
+	padding-right: 10px;
+}
+
+.logoutForm button {
+	width: 75px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.picForm {
+	text-align: center;
+}
+
+.picForm input, button {
+	cursor: pointer;
+}
+
+.menu {
+	list-style-type: none;
+	text-align: right;
+	color: #FFFFFF;
+	font-family: Arial;
+	overflow: hidden;
+	font-size: 20px;
+}
+
+.menu li {
+	display: inline-block;
+	text-decoration: none;
+}
+
+.menu li a {
+	
+	color: black;
+	padding-right: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.forum {
+	float: center;
+}
+
+.upload_image input {
+	height: 25px;
+	margin-right: 6px;
+	font-size: 16px;
+	padding: 1px 1px 1px 5px;
+}
+
+.upload_image button {
+	width: 75px;
+	height: 30px;
+	border: none;
+	margin-right: 20px;
+	font-size: 12px;
+	cursor: pointer;
+	padding: 3px 3px 3px 3px;
+}
