@@ -146,6 +146,6 @@ markerPicture = new google.maps.Marker({
     <div id="social-Map"></div>
 
 </body>
-	<p class="forum"> For more info, please visit our forum: <a href ="http://socialmapforum.proboards.com/"> 
-	SocialMap Forums </a></p>
+	<center></center><p class="forum"> For more info, please visit our forum: <a href ="http://socialmapforum.proboards.com/"> 
+	SocialMap Forums </a></p></center>
 </html>
