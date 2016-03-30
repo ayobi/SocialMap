@@ -15,5 +15,5 @@
 		$_SESSION['id'] = $row['id'];
 	}
 	
-	header("Location: ../index.php");
+	header("Location: ../map.php");
 ?>
