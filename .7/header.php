@@ -11,11 +11,11 @@
 	</head>
 	<body>
 		<header>
-			<center><img src="Socialmap.png" class='logo' height="150" width = "600"/></center>					
+			<center><img src="http://socialmap.netau.net/Socialmap.png" class='logo' height="150" width = "600"/></center>					
 				<?php
 					if(isset($_SESSION['id'])){	
 						echo "<ul class='menu'>
-							  <li><a href='index.php'>Home</a></li>
+							  <li><a href='map.php'>Home</a></li>
 							  <li><a href='profile.php'>Profile</a></li>
 							  <form action='includes/logout.inc.php' class='logoutForm'>
 							  <button>Log Out</button></form></ul>";
@@ -30,7 +30,7 @@
 						}
 						echo "<form action='includes/login.inc.php' method='POST' class='loginForm'>
 						<input type='text' name='username' placeholder='Username'>
-						<input type='text' name='password' placeholder='Password'>
+						<input type='password' name='password' placeholder='Password'>
 						<button type='submit'>Log In</button></form>";
 						echo "<br><p class = 'headline'>Welcome to SocialMap! Please Login or create an account.</p></br>";
 						

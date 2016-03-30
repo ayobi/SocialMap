@@ -50,7 +50,7 @@
 
 
 <!--Connect to the google maps api-->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyqLywtRdPq21DKjVtkGWXcvaN-Q8kKaU&sensor=true"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0ftkFxnjdqxD0XZgjOXYr6IXFr1bfcDQ"></script>
 
 <!--Main chunk of javascript that creates and controls the map.-->
 <script type="text/javascript">

@@ -41,8 +41,8 @@
 				else if(isset($_POST['delete']))
 				{
 					
-					$con=mysql_connect("mysql7.000webhost.com", "a7552541_admin", "password123");
-					mysql_select_db("a7552541_social",$con);
+					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+					mysql_select_db("smdb",$con);
 					$qry="DELETE FROM images";
 					$result=mysql_query($qry,$con);
 					if($result)
@@ -53,8 +53,8 @@
 				//displayimage();
 				function saveimage($name,$image)
 				{
-					$con=mysql_connect("mysql7.000webhost.com", "a7552541_admin", "password123");
-					mysql_select_db("a7552541_social",$con);
+					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+					mysql_select_db("smdb",$con);
 					$qry="insert into images (name,image) values ('$name','$image')";
 					$result=mysql_query($qry,$con);
 					if($result)
@@ -70,8 +70,8 @@
 				}
 				function displayimage()
 				{
-					$con=mysql_connect("mysql7.000webhost.com", "a7552541_admin", "password123");
-					mysql_select_db("a7552541_social",$con);
+					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+					mysql_select_db("smdb",$con);
 					$qry="select * from images";
 					$result=mysql_query($qry,$con);
 					while($row = mysql_fetch_array($result))
