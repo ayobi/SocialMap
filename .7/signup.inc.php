@@ -19,9 +19,9 @@
 			header("Location: ../index.php?error=username");
 			exit();
 		} else{
-			//$encrypted_password = password_hash($password, PASSWORD_DEFAULT);
+			$enPW = password_hash($password, PASSWORD_DEFAULT);
 			$sql = "INSERT INTO users (firstName, lastName, username, password)
-			VALUES('$firstName', '$lastName', '$username', '$password')";
+			VALUES('$firstName', '$lastName', '$username', '$enPW')";
 			$result = $conn->query($sql);
 		
 			header("Location: ../index.php");
