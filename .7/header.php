@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8"> 
 		<title>SocialMap</title>
@@ -11,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-			<center><img src="http://socialmap.netau.net/Socialmap.png" class='logo' height="150" width = "600"/></center>					
+			<center><img src="/Socialmap.png" class='logo' height="150" width = "600"/></center>	
 				<?php
 					if(isset($_SESSION['id'])){	
 						echo "<ul class='menu'>
@@ -29,19 +30,18 @@
 							echo "<h3>Username already exists!</h3>";
 						}
 						echo "<form action='includes/login.inc.php' method='POST' class='loginForm'>
-						<input type='text' name='username' placeholder='Username'>
+						<input type='text' name='username' placeholder='Username' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'>
 						<input type='password' name='password' placeholder='Password'>
 						<button type='submit'>Log In</button></form>";
 						echo "<br><p class = 'headline'>Welcome to SocialMap! Please Login or create an account.</p></br>";
 						
 						echo "<br><form action='includes/signup.inc.php' method='POST' class='signupForm'>
-								<input type='text' name='firstName' placeholder='First Name'><br>
-								<input type='text' name='lastName' placeholder='Last Name'><br>
+								<input type='text' name='firstName' placeholder='First Name' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'><br>
+								<input type='text' name='lastName' placeholder='LastName' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'><br>
 								<input type='text' name='username' placeholder='Username'><br>
 								<input type='text' name='password' placeholder='Password'><br>
 								<button type='submit'>SIGN UP</button></form></br>";
-							
-						
+
 					}
 				?>
 		</header>
