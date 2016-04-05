@@ -108,10 +108,18 @@ h3{
 }
 
 .picForm {
-	text-align: center;
+	float: center;
 }
 
 .picForm input, button {
+	cursor: pointer;
+}
+
+.profilePicForm {
+	float: center;
+}
+
+.profilePicForm input, button {
 	cursor: pointer;
 }
 
@@ -127,6 +135,7 @@ h3{
 .menu li {
 	display: inline-block;
 	text-decoration: none;
+        color: green;
 }
 
 .menu li a {
