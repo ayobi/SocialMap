@@ -1,5 +1,6 @@
 <?php
 	include 'header.php';
+	displayimage();
 ?>
 
 <!DOCTYPE html>
@@ -37,90 +38,30 @@
 		  display: inline; 
 	  }
 	 </style>
-	  
-	<div style="clear:both"></div>
-	</div>
-		<link rel="stylesheet" type="text/css" href="style.css">		
-		<body>
-			<form method="post" class="picForm" enctype="multipart/form-data">
-			<br/>
-				<input type="file" name="image" />
-				<br/><br/>
-				<input type="submit" name="submit" value="Upload" />
-			</form> 
-			<?php
-			
-			echo $result;
-				
-				if(isset($_POST['submit']))
-				{
-					if(getimagesize($_FILES['image']['tmp_name']) == FALSE)
-					{
-						echo "Please select an image.";
-					}
-					else
-					{
-						$image= addslashes($_FILES['image']['tmp_name']);
-						$name= addslashes($_FILES['image']['name']);
-						$image= file_get_contents($image);
-						$image= base64_encode($image);
-						saveimage($name,$image);
-					}
-				}
-				else if(isset($_POST['delete']))
-				{
-					
-					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
-					mysql_select_db("smdb",$con);
-					$qry="DELETE FROM images";
-					$result=mysql_query($qry,$con);
-					if($result)
-					{
-						echo "<br /><h3>Image deleted.</h3>";
-					}
-				}
-				function saveimage($name,$image)
-				{
-					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
-					mysql_select_db("smdb",$con);
-					$qry="insert into images (name,image) values ('$name','$image')";
-					$result=mysql_query($qry,$con);
-					if($result)
-					{
-						echo "<br/><h3>Image uploaded.</h3>";
-						displayimage();
-					}
-					else
-					{
-						echo "<br/>Image not uploaded.";
-						displayimage();
-					}
-				}
-				function displayimage()
-				{
-					$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
-					mysql_select_db("smdb",$con);
-					$qry="select * from images";
-					$result=mysql_query($qry,$con);
-					while($row = mysql_fetch_array($result))
-					{
-						echo '<img height="225" width="225" src="data:image;base64,'.$row[2].' "> ';
-					}
-					mysql_close($con); 
-				}
-			?>
+<center>
+<?php
+$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$username = $_GET['username'];
+echo "Welcome $username";  // get the value of the last element 
+?></center>
+<link rel="stylesheet" type="text/css" href="style.css">
+	<form method="post" class="picForm" enctype="multipart/form-data">
+	<br/>
+		<input type="file" name="image" />
+		<br/><br/>
+		<input type="submit" name="submit" value="Upload" />
+	</form>
 <br><center>
 <form action='#' method='POST' class='upload_image'>
 	<input type='text' name='URL' id='userInput' placeholder='URL'>
 	<a href="" id=lnk></a> 
-	<input type='text' name='Latitude' id='latitude' placeholder='Latitude'>
+	<input type='text' name='Latitude' id='Latitude' placeholder='Latitude'>
 	<a href="" id=lnk2></a>
-	<input type='text' name='Longitude' id='longitude' placeholder='Longitude'>
+	<input type='text' name='Longitude' id='Longitude' placeholder='Longitude'>
 	<a href="" id=lnk3></a>
 	<button type='button' onclick='javascript:loadMapMarkers ()'>Insert Image</button>
-	*Right click on map to insert Latitude and Longitude values*</form></br></center>
-
-
+	*Right click on map to insert Latitude and Longitude values*</form></br>
+</div></center>
 
 <!--Connect to the google maps api-->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0ftkFxnjdqxD0XZgjOXYr6IXFr1bfcDQ"></script>
@@ -165,17 +106,17 @@ function clickLocation(){
 	google.maps.event.addListener(socialMap, "rightclick", function(event) {
 		var lng = event.latLng.lng();
 		var lat = event.latLng.lat();
-		document.getElementById('longitude').value = lng;
-		document.getElementById('latitude').value = lat;
+		document.getElementById('Longitude').value = lng;
+		document.getElementById('Latitude').value = lat;
 	});	
 }
 
 //Function that loads the map markers.
 function loadMapMarkers (){
-	var latValue = document.getElementById('latitude').value;
+	var latValue = document.getElementById('Latitude').value;
 	var lnk2 = document.getElementById('lnk2');
 	lnk2.href = "" + latValue;
-	var lonValue = document.getElementById('longitude').value;
+	var lonValue = document.getElementById('Longitude').value;
 	var lnk3 = document.getElementById('lnk3');
 	lnk3.href = "" + lonValue;
 	
@@ -212,13 +153,76 @@ markerPicture = new google.maps.Marker({
 }
 </script>
 
+<?php
+echo $result;
+$username = $_GET['username'];
+$Latitude = $_POST['Latitude'];
+$Longitude = $_POST['Longitude'];
+	if(isset($_POST['submit']))
+	{
+		if(getimagesize($_FILES['image']['tmp_name']) == FALSE)
+		{
+			echo "Please select an image.";
+		}
+		else
+		{
+			$image= addslashes($_FILES['image']['tmp_name']);
+			$name= addslashes($_FILES['image']['name']);
+			$image= file_get_contents($image);
+			$image= base64_encode($image);
+			saveimage($username, $name, $image, $Latitude, $Longitude);
+
+		}
+	}
+	else if(isset($_POST['delete']))
+	{
+		
+		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+		mysql_select_db("smdb",$con);
+		$qry="DELETE FROM images";
+		$result=mysql_query($qry,$con);
+		if($result)
+		{
+			echo "<br /><h3>Image deleted.</h3>";
+		}
+	}
+	//displayimage();
+	function saveimage($username, $name, $image, $Latitude, $Longitude)
+	{
+		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+		mysql_select_db("smdb",$con);
+		$qry="insert into images (user, name, image, Latitude, Longitude) values ('$username', '$name', '$image', '$Latitude', '$Longitude')";
+		$result=mysql_query($qry,$con);
+		if($result)
+		{
+			echo "<br/><h3>Image uploaded.</h3>";
+			displayimage();
+		}
+		else
+		{
+			echo "<br/>Image not uploaded.";
+			displayimage();
+		}
+	}
+	function displayimage()
+	{
+		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
+		mysql_select_db("smdb",$con);
+		$qry="select * from images";
+		$result=mysql_query($qry,$con);
+		while($row = mysql_fetch_array($result))
+		{
+			echo '<img height="225" width="225" src="data:image;base64,'.$row[3].' "> ';
+		}
+		mysql_close($con); 
+	}
+?>
+
 </head>
 <body> 
-
      <!--Create the div to hold the map.-->
     <div id="social-Map"></div>
-
 </body>
-	<center></center><p class="forum"> For more info, please visit our forum: <a href ="http://socialmapforum.proboards.com/"> 
+	<center><p class="forum"> For more info, please visit our forum: <a href ="http://socialmapforum.proboards.com/"> 
 	SocialMap Forums </a></p></center>
 </html>
