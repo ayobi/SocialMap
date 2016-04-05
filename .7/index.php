@@ -10,6 +10,11 @@
 		}
 	?>
 	<body>
+		<div class="text2">
+		<a class="link" onclick="logOauth(0)" href="https://api.instagram.com/oauth/authorize/?client_id=	34bfaa366dde4b559db81f4a06f3a3af&redirect_uri=http://socialmap.club/map.php/&response_type=token">
+			<img src="/igbutton.png" border="0">
+		</a>
+	    </div>
 		<script class='facebook'>
 		  window.fbAsyncInit = function() {
 			FB.init({
