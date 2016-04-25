@@ -4,19 +4,19 @@
 	
 	$firstName = $_POST['firstName'];
 	$lastName = $_POST['lastName'];
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username = $_POST['username1'];
+	$password = $_POST['password1'];
 	
 	if (empty($firstName) || empty($lastName) || empty($username) || empty($password)){
-		header("Location: ../index.php?error=empty");
+		header("Location: ../index1.php?error=empty");
 		exit();
 	}
 	else {
-		$sql = "SELECT username FROM user WHERE username='$username'";
+		$sql = "SELECT username FROM users WHERE username='$username'";
 		$result = $conn->query($sql);
 		$usernameCheck = mysqli_num_rows($result);
 		if ($usernameCheck > 0){
-			header("Location: ../index.php?error=username");
+			header("Location: ../index1.php?error=username");
 			exit();
 		} else{
 			$enPW = password_hash($password, PASSWORD_DEFAULT);
@@ -24,7 +24,7 @@
 			VALUES('$firstName', '$lastName', '$username', '$enPW')";
 			$result = $conn->query($sql);
 		
-			header("Location: ../index.php");
+			header("Location: ../index1.php");
 		}
 	}
 ?>
