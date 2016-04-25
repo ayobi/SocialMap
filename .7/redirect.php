@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 /* By Qassim Hassan, wp-time.com */
-include 'header.php';
+include 'header1.php';
 include 'Qassim_HTTP.php';
 
 if( isset($_GET['code']) ){
-
+	$_SESSION['id'] = $_GET['code'];
 	$data = http_build_query(
 				array(
 					"client_id" => "34bfaa366dde4b559db81f4a06f3a3af",
@@ -19,12 +19,8 @@ if( isset($_GET['code']) ){
 	$url = "https://api.instagram.com/oauth/access_token"; 
 
 	$result = Qassim_HTTP(1, $url, 0, $data);
-
-	//echo 'This is your access token, save it: '.$result['access_token'];
-echo $result['access_token'];
 	$_SESSION["access_token"] = $result['access_token'];
-$access_token = $_SESSION["access_token"]; // enter your access token.
-//$access_token = "1725870120.34bfaa3.01a1bb8e2bda4969b765e619d8debe17";
+$access_token = $_SESSION["access_token"];
 $count = 5; // enter count of recent images.
 
 $url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=$access_token&count=$count"; 
@@ -38,9 +34,4 @@ foreach ( $result['data'] as $image ) {
 }
 
 }
-
-/* Now open this link in browser to get access token:
-	https://www.instagram.com/oauth/authorize/?client_id=enter_your_client_id&redirect_uri=enter_your_redirect_uri&response_type=code
-*/
-
 ?>

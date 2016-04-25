@@ -9,7 +9,7 @@ session_start();
 ?>	
 
 	<!-- Main Content -->
-	<div class='clearfix CONT_PS_StaticContent CONT_STANDARD'>
+	<center><div class='clearfix CONT_PS_StaticContent CONT_STANDARD'>
 	<form action='includes/login.inc.php' method='POST'>
 		<h1 class='H_Title'>Sign In or Create an Account</h1>
 
@@ -93,6 +93,6 @@ session_start();
 			</div>
 		</div>
 	</form>
-</div>	
+</div></center>
 </body>
 </html>
