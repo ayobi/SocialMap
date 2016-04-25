@@ -1,5 +1,5 @@
 <?php
-	include 'header.php';
+	include 'header1.php';
 ?>
 
 <!DOCTYPE html>
@@ -46,41 +46,41 @@
 </head>
 <body>
 <center>
+
+
+
+
 <?php
 $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $username = $_SESSION['username'];
-echo "Welcome $username";
+
 ?></center>
-<center><form method="post" class="picForm" enctype="multipart/form-data">
-	<br/>
-		<input type="file" name="image" />
-		<br/><br/>
-		<input type="submit" name="submit" value="Upload" />
-	</form></center>
-<br><center>
-<form action='#' method='POST' class='upload_image'>
-	<input type='text' name='URL' id='userInput' placeholder='URL'>
-	<a href="" id=lnk></a> 
-	<input type='text' name='Latitude' id='Latitude' placeholder='Latitude'>
-	<a href="" id=lnk2></a>
-	<input type='text' name='Longitude' id='Longitude' placeholder='Longitude'>
-	<a href="" id=lnk3></a>
-	<button type='button' onclick='javascript:loadMapMarkers ()'>Insert Image</button>
-	*Right click on map to insert Latitude and Longitude values*</form></br>
-</center>
+
+
+	<div class="clearfix CONT_PS_StaticContent CONT_STANDARD">
+			<h1 class='H_Title'>For more info, please visit our forum: 
+				<a href ="http://socialmapforum.proboards.com/">SocialMap Forums </a>
+			</h1>
+
+
 
 <?php
 $username = $_SESSION['username'];
-echo $result;
+$access_token = $_SESSION['access_token'];
+//echo "ACCESS TOKEN $access_token";
 displayimage();
-$Latitude = $_REQUEST['Latitude'];
-$Longitude = $_REQUEST['Longitude'];
-echo $Latitude;
 	if(isset($_POST['submit']))
 	{
 		if(getimagesize($_FILES['image']['tmp_name']) == FALSE)
 		{
-			echo "Please select an image.";
+			echo "<div class='CONT_MsgBox_Error'>
+					<div class='H_MsgBox'>Error Message</div>
+					<ul class='feedbackPanel'>
+						<li>
+							<span>Please select an image.</span>
+						</li>
+					</ul>
+				</div>";
 		}
 		else
 		{
@@ -88,7 +88,7 @@ echo $Latitude;
 			$name= addslashes($_FILES['image']['name']);
 			$image= file_get_contents($image);
 			$image= base64_encode($image);
-			saveimage($username, $name, $image, $Latitude, $Longitude);
+			saveimage($username, $name, $image);//, $Latitude, $Longitude);
 
 		}
 	}
@@ -97,59 +97,125 @@ echo $Latitude;
 		
 		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
 		mysql_select_db("smdb",$con);
-		echo $username;
-		$qry="DELETE FROM images WHERE user=$username";
+		$qry="DELETE * FROM images";
 		$result=mysql_query($qry,$con);
 		if($result)
 		{
-			echo "<br /><h3>Image deleted.</h3>";
+			echo "<div class='CONT_MsgBox_Complete'>
+					<div class='H_MsgBox'>Success</div>
+					<ul class='feedbackPanel'>
+						<li>
+							<span>Image deleted.</span>
+						</li>
+					</ul>
+				</div>";
 		}
 	}
-	
-	function saveimage($username, $name, $image, $Latitude, $Longitude)
+
+	function saveimage($username, $name, $image)//, $Latitude, $Longitude)
 	{
 		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
 		mysql_select_db("smdb",$con);
-		$qry="insert into images (user, name, image, Latitude, Longitude) values ('$username', '$name', '$image', '$Latitude', '$Longitude')";
+		$qry="insert into images (user, name, image) values ('$username', '$name', '$image')";
+		//$qry="insert into images (user, name, image, Latitude, Longitude) values ('$username', '$name', '$image', '$Latitude', '$Longitude')";
 		$result=mysql_query($qry,$con);
 		if($result)
 		{
-			echo "<br/><h3>Image uploaded.</h3>";
-			displayimage();
+			echo "<div class='CONT_MsgBox_Complete'>
+					<div class='H_MsgBox'>Success</div>
+					<ul class='feedbackPanel'>
+						<li>
+							<span>Image uploaded.</span>
+						</li>
+					</ul>
+				</div>";
+			//displayimage();
 		}
 		else
 		{
-			echo "<br/>Image not uploaded.";
-			displayimage();
+			echo "<div class='CONT_MsgBox_Error'>
+					<div class='H_MsgBox'>Error Message</div>
+					<ul class='feedbackPanel'>
+						<li>
+							<span>Image not uploaded.</span>
+						</li>
+					</ul>
+				</div>";
+			//displayimage();
 		}
+		echo $username;
+		displayimage();
 	}
 	function displayimage()
 	{
-		echo $username;
+		//echo $username;
 		$con=mysql_connect("socialmapclub.ipagemysql.com", "socialmapclub", "Socialmap2016!");
 		mysql_select_db("smdb",$con);
-		$qry="SELECT * FROM images WHERE user=$username";
+		$qry="SELECT name, image FROM images WHERE user=$username";
 		$result=mysql_query($qry,$con);
 		while($row = mysql_fetch_array($result))
 		{
-			echo '<img height="225" width="225" src="data:image;base64,'.$row[3].' "> ';
+			echo '<img height="225" width="225" src="data:image;base64,'.$row[4].' "> ';
 		}
 		mysql_close($con); 
 	}
 ?>
 
+
+
+
+		<form method="post" enctype="multipart/form-data">
+			<div class='CONT_Default'>
+				<h2 class='H_Partial'>File Upload</h2>
+				<div class='CONT_Row CONT_Cell W33'>
+					<div class='PAD_Bottom'>
+						<input type="file" name="image" />
+					</div>
+				</div>
+				
+				<div class='CONT_Row'>
+					<div class='CONT_Cell'>
+						<div class='BTN_Layout_Center'>
+							<input type="submit" name="submit" value="Upload"  class="BTN_Green" />
+							<input type="submit" name="delete" value="Delete"  class="BTN_Green" />
+						</div> 
+					</div>
+				</div>
+			</div>
+		</form>
+		<form action='#' method='POST'>
+			<div class='CONT_Default'>
+				<h2 class='H_Partial'>Right click on map to insert Latitude and Longitude values</h2>
+				<div class='CONT_Row CONT_Cell W33'>
+					<div class='PAD_Bottom'>
+						<input type='text' name='URL' id='userInput' placeholder='URL' class='W26'>
+						<a href="" id=lnk></a> 
+					</div>
+					<div class='PAD_Top'>
+						<input type='text' name='Latitude' id='Latitude' placeholder='Latitude' class='W26'>
+						<a href="" id=lnk2></a>
+					</div>
+					<div class='PAD_Top'>
+						<input type='text' name='Longitude' id='Longitude' placeholder='Longitude' class='W26'>
+						<a href="" id=lnk3></a>
+					</div>
+				</div>
+				
+				<div class='CONT_Row'>
+					<div class='CONT_Cell'>
+						<div class='BTN_Layout_Center'>
+							<button type='button' class='BTN_Green' onclick='javascript:loadMapMarkers()'>Insert Image</button>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</form>
+</div>
+
+
+
 <!--Create the div to hold the map.-->
 <div id="social-Map"></div>
-
-
-<!--Instagram Button.-->
-<div class="text2">
-		     <a class="link" href=
-                            "https://api.instagram.com/oauth/authorize/?client_id=34bfaa366dde4b559db81f4a06f3a3af&redirect_uri=http://socialmap.club/success.php&response_type=code">
-			<img src="/igbutton.png" border="0">
-		</a>
-	    </div>
-
 <!--Connect to the google maps api-->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0ftkFxnjdqxD0XZgjOXYr6IXFr1bfcDQ"></script>
 
@@ -213,8 +279,6 @@ function loadMapMarkers (){
 	var userInput = document.getElementById('userInput').value;
 	var lnk = document.getElementById('lnk');
 	lnk.href = "" + userInput;
-	//lnk.innerHTML = lnk.href;
-	var imageStore = 'http://i.imgur.com/MmAHgRa.jpg';
 	var markerIconSM1 = {
 	  
 	  url: userInput,
@@ -240,7 +304,7 @@ markerPicture = new google.maps.Marker({
 }
 </script>
 
+
+
 </body>
-	<center><p class="forum"> For more info, please visit our forum: <a href ="http://socialmapforum.proboards.com/"> 
-	SocialMap Forums </a></p></center>
 </html>

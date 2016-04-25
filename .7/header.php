@@ -10,6 +10,7 @@
 		<title>SocialMap</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
+        <script type="text/javascript" src="script.js"></script>
 	<body>
 		<header>
 			<center><img src="/Socialmap.png" class='logo' height="150" width = "600"/></center>	
@@ -17,7 +18,6 @@
 					if(isset($_SESSION['id'])){	
 						echo "<ul class='menu'>
 							  <li><a href='map.php'>Home</a></li>
-							  <li><a href='profile.php'>Profile</a></li>
 							  <form action='includes/logout.inc.php' class='logoutForm'>
 							  <button>Log Out</button></form></ul>";
 					}
@@ -33,10 +33,12 @@
 						<input type='text' name='username' placeholder='Username' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'>
 						<input type='password' name='password' placeholder='Password'>
 						<button type='submit'>Log In</button></form>";
-						echo "<br><p class = 'headline'>Welcome to SocialMap! Please Login or create an account.</p></br>";
+						echo "<br><p class = 'headline'>Welcome to SocialMap! Please Login or Create an Account.</p></br>";
 						
 						echo "<br><form action='includes/signup.inc.php' method='POST' class='signupForm'>
-								<input type='text' name='firstName' placeholder='First Name' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'><br>
+				<input type='button' value='Click to Sign Up' onclick='myfunction();'>
+                        <p id='demo'></p>
+        		<input type='text' name='firstName' placeholder='First Name' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'><br>
 								<input type='text' name='lastName' placeholder='LastName' onblur='this.value = this.value.substr(0, 1).toUpperCase() + this.value.substr(1);'><br>
 								<input type='text' name='username' placeholder='Username'><br>
 								<input type='text' name='password' placeholder='Password'><br>

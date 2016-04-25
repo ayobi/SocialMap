@@ -1,25 +1,20 @@
 <?php
-	include 'header.php';
+session_start();
+?>
+<?php
+	include 'header1.php';
 	include 'dbh.php';
 	ini_set('mysql.connect_timeout',300);
     ini_set('default_socket_timeout',300);
 ?>
 <html>
+<body>
+	<!-- Main Content -->
+	<div class="clearfix CONT_PS_StaticContent CONT_STANDARD">
 
-		<!-- Needed because other elements inside ProfilePage have floats -->
-		<div style="clear:both"></div>
-	</div>
-		<link rel="stylesheet" type="text/css" href="style.css">		
-		<body>
-			<center><form method="post" class="profilePicForm" enctype="multipart/form-data">
-			<br/>
-				<input type="file" name="image" />
-				<br/><br/>
-				<input type="submit" name="submit" value="Upload" />
-				<input type="submit" name="delete" value="Delete" />
-			</form></center>
-					
-			<?php
+		<h1 class='H_Title'>Profile</h1>
+	
+		<?php
 			
 			echo $result;
 				
@@ -27,7 +22,14 @@
 				{
 					if(getimagesize($_FILES['image']['tmp_name']) == FALSE)
 					{
-						echo "Please select an image.";
+						echo "<div class='CONT_MsgBox_Error'>
+								<div class='H_MsgBox'>Error Message</div>
+								<ul class='feedbackPanel'>
+									<li>
+										<span>Please select an image</span>
+									</li>
+								</ul>
+							</div>";
 					}
 					else
 					{
@@ -47,7 +49,9 @@
 					$result=mysql_query($qry,$con);
 					if($result)
 					{
-						echo "<br /><h3>Image deleted.</h3>";
+						echo "<div class='CONT_MsgBox_Complete'>
+								<div class='H_MsgBox'>Image deleted</div>
+                                                           </div>";
 					}
 				}
 				//displayimage();
@@ -59,12 +63,21 @@
 					$result=mysql_query($qry,$con);
 					if($result)
 					{
-						echo "<br/><h3>Image uploaded.</h3>";
+						echo "<div class='CONT_MsgBox_Complete'>
+								<div class='H_MsgBox'>Image uploaded</div>
+							</div>";
 						displayimage();
 					}
 					else
 					{
-						echo "<br/>Image not uploaded.";
+						echo "<div class='CONT_MsgBox_Error'>
+								<div class='H_MsgBox'>Error Message</div>
+								<ul class='feedbackPanel'>
+									<li>
+										<span>Image not uploaded</span>
+									</li>
+								</ul>
+							</div>";
 						displayimage();
 					}
 				}
@@ -81,5 +94,26 @@
 					mysql_close($con); 
 				}
 			?>
-		</body>
+
+	<div class='CONT_Default'>
+			<form method="post" class="profilePicForm" enctype="multipart/form-data">
+				<h2 class='H_Partial'>File Upload or Delete</h2>
+				<div class='CONT_Row CONT_Cell W33'>
+					<div class='PAD_Bottom'>
+						<input type="file" name="image" />
+					</div>
+				</div>
+				
+				<div class='CONT_Row'>
+					<div class='CONT_Cell'>
+						<div class='BTN_Layout_Center' class='W26'>
+							<input type='submit' name="submit" value="Upload"  class="BTN_Green" />
+							<input type="submit" name="delete" value="Delete"  class="BTN_Green" />
+						</div> 
+					</div>
+				</div>
+			</form>
+		</div>
+		</div>			
+</body>
 </html>
