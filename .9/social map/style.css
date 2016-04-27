@@ -1,0 +1,225 @@
+* {
+	margin: 0px; 
+	padding: 0px;
+	text-decoration: none;
+}
+
+header{
+	width: 100%;
+	height: 150px;
+	background-color: #39b54a;
+}
+
+body{
+	background-color: #eeedef
+}
+
+h1{
+	text-align: center;
+}
+
+h3{
+	float: center;
+	text-decoration: none;
+}
+
+.headline {
+	padding-left: 37%;
+	padding-top: 0px;
+	font-size: 20px;
+        color: #4caf50;
+	font-weight: bold;
+}
+
+.loginForm {
+	float: right;
+}
+
+.loginForm input {
+	float: left;
+	height: 25px;
+	margin-right: 6px;
+	font-size: 16px;
+	padding: 1px 1px 1px 5px;
+}
+
+.loginForm button {
+	width: 75px;
+	height: 30px;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+	margin-right: 20px;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 3px 3px 3px 3px;
+}
+
+.loginForm Button:hover{
+    background-color: #90EE90;
+    color: black;
+}
+
+.signupForm {
+	padding-left: 40%;
+	min-width: 10%;
+	padding-top: 5%;
+}
+
+.signupForm input {
+	font-size: 20px;
+	width: 300px;
+	margin-bottom: 10px;
+	padding-left: 5px;
+}
+
+.signupForm Button{
+	width: 309px;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+        font-size: 18px;
+        cursor: pointer;
+}
+
+.signupForm Button:hover {
+    background-color: #90EE90;
+    color: black;
+}
+
+.logoutForm{
+	float: right;
+	padding-right: 10px;
+}
+
+.logoutForm button {
+	width: 75px;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+}
+
+.logoutForm Button:hover{
+    background-color: #90EE90;
+    color: black;
+}
+
+.picForm {
+	float: left;
+}
+
+.picForm input, button {
+	cursor: pointer;
+}
+
+.profilePicForm {
+	float: center;
+}
+
+.profilePicForm input, button {
+	cursor: pointer;
+}
+
+.menu {
+	list-style-type: none;
+	text-align: right;
+	color: #FFFFFF;
+	font-family: Arial;
+	overflow: hidden;
+	font-size: 20px;
+}
+
+.menu li {
+	display: inline-block;
+	text-decoration: none;
+}
+
+.menu li a {
+	padding-right: 3px;
+	width: 75px;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+}
+
+.forum {
+	float: center;
+}
+
+.upload_image input {
+	height: 25px;
+	margin-right: 6px;
+	font-size: 16px;
+	padding: 1px 1px 1px 5px;
+}
+
+.upload_image button {
+	width: 75px;
+	height: 30px;
+	margin-right: 20px;
+	font-size: 12px;
+	cursor: pointer;
+	padding: 3px 3px 3px 3px;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+}
+
+.upload_image Button:hover{
+    background-color: #90EE90;
+    color: white;
+}
+
+input[type=submit] {
+        width: 120px;
+	height: 30px;
+	margin-right: 20px;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 3px 3px 3px 3px;
+	background-color: #4CAF50;
+        border: none;
+  	color: white;
+	display: inline-block;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#social-Map { 
+	  	  height: 75%;
+		  width: 75%; 
+		  margin-left: auto;
+          margin-right: auto;
+}
+	  
+.pop_up_box_text {
+	 	  font-family: Georgia, 'Times New Roman', Times, serif; 
+		  font-size: 16px; 
+		  line-height: 22px; 
+		  color: #ffffff; 
+		  display: inline; 
+}
